@@ -1,0 +1,84 @@
+//james huang
+//hw47 ascending
+//2017-12-5
+//apcs pd1
+
+
+//hey, past homeworks(namely the one right before this one) really are swell
+ 
+import java.util.ArrayList;
+public class OrderedArrayList {
+    //instance vars
+    ArrayList<Comparable> foo = new ArrayList<Comparable>();//declares a new variable
+    //populate()-populate an ArrayList with 23 Integers and determine whether the list is sorted or not.
+   
+    public ArrayList populate() {//populates foo with 23 random integers
+	
+	for (int i=0; i<23; i++) {
+	    foo.add((int)(Math.random()*100));//adds to end random integer
+	}
+	sort2();
+	return foo;
+    }
+    //wrapper method for add in ArrayList(modifies it so that it adds at correct position)
+    public void add(int x) {
+	boolean complete=false;
+	
+	for(int i=0; i<foo.size(); i++) {//go through list from 0th to last element
+	    if ((int)foo.get(i)>x) {//when the element in foo is finally larger than x
+		foo.add(i,x);//add x here, it'll be in the right position
+	        i+=foo.size();//end the method
+		complete=true;//the program is complete
+	    }
+	}
+	if (!complete) {//if the number is bigger than everything in list
+	    foo.add(x);//append to end
+	}
+	
+        
+    }
+    /*
+MY ALGO:-List sorted in ascending order
+1. go through the list
+2. everytime the number in position x is greater than the number in position x+1(not in ascending order), swap the two numbers around
+3. go through the list again and again until this instance of AlTester is sorted
+     */
+   
+    public void sort2() {
+	while(!(this.sorted())) {
+	for(int i=0; i<foo.size()-1; i++) {
+	    if((int)foo.get(i).compareTo((int)foo.get(i+1))==1) {
+		int x=(int)foo.get(i);
+		    foo.set(i,(int)foo.get(i+1));
+		    foo.set(i+1,x);
+	    }
+	}
+    }
+    }
+    //sorted()-return true if the list is sorted.
+    public boolean sorted() {
+	int p=(int)foo.get(0);
+	for(int i=0; i<foo.size(); i++) {//go through entire list
+	    if (p>(int)foo.get(i)) {//if element before is greater than current element
+		
+		return false;//the list isnt sorted
+	    }
+	    p=(int)foo.get(i);//otherwise set this element as p as we will move on to the element to the right of p
+	}
+	return true;//if we get through the entire list without a hitch , then the list is sorted
+    }
+    //main method
+    public static void main(String[] args) {
+	OrderedArrayList b=new OrderedArrayList();
+	System.out.println(b.populate());//should be populated in ascending order
+	System.out.println(b.sorted());//true
+	//b.sort();
+	//b.sort2();
+	b.add(6);
+	b.add(12312371);
+	b.add(-2);
+	b.add(56);
+	System.out.println(b.foo);//should be sorted
+	  System.out.println(b.sorted());//true
+    }
+}
