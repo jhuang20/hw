@@ -1,0 +1,71 @@
+import cs1.Keyboard;
+public class Swapper {
+    public static int e,b,c,d;
+    public static String[][] ini=new String[10][10];
+    public static final String a="abcdefghijklmnopqrstuvwxyz";
+    
+    /* THE PLAN:
+       what the hell do I do???
+       thinking...
+       thinking...
+       okay so first I have to create an array(I already created a blank array)
+    */
+    public static String concat(int x){
+	String y="";
+	int start=0;
+	for(int i=0;i<x;i++) {
+	    start=(int)(26*Math.random());
+	    y+=a.substring(start,start+1);
+	}
+	return y;
+    }
+    public static void fill(){
+	for(int i=0; i<ini.length; i++) {
+	    for(int x=0;x<ini[i].length; x++) {
+		
+		ini[i][x]=concat(3);
+	    }
+		
+	}
+  
+
+	}
+    public static String arrayStr(String[][] b) {
+	String fab="[";//start with the beginning of every list
+	for(int x=0; x<b.length-1;x++) {//go through every term in the list
+	    fab+="{";
+	    for(int i=0; i<b[x].length;i++) {
+	    fab+=b[x][i]+",";//concatenate it to the string
+	    }
+	    fab+="}\n";
+
+	}
+	fab+=b[b.length-1];//add the final term!
+	return fab+"]";
+    }
+    public static void swap() {
+	
+	String stor=ini[e][b];
+	ini[e][b]=ini[c][d];
+	ini[c][d]=stor;
+    }
+	
+    
+    public static void main(String[] args) {
+	Swapper r=new Swapper();
+	r.fill();
+	System.out.println(arrayStr(ini));
+	System.out.println("please pick a column");
+	e=Keyboard.readInt();
+	System.out.println("please pick row");
+	b=Keyboard.readInt();
+	System.out.println("pick a row to swap with");
+	c=Keyboard.readInt();
+	System.out.println("pick a column to swap with");
+	d=Keyboard.readInt();
+	r.swap();
+	System.out.println(arrayStr(ini));
+	
+	
+    }
+}
