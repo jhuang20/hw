@@ -1,84 +1,112 @@
-//james huang
-//hw47 ascending
-//2017-12-5
-//apcs pd1
+/********************************
+ * class OrderedArrayList
+ * wrapper class for ArrayList.
+ * Imposes the restriction that stored items 
+ * must remain sorted in ascending order
+ ********************************/
 
-
-//hey, past homeworks(namely the one right before this one) really are swell
- 
+//ArrayList's implementation is in the java.util package
 import java.util.ArrayList;
-public class OrderedArrayList {
-    //instance vars
-    ArrayList<Comparable> foo = new ArrayList<Comparable>();//declares a new variable
-    //populate()-populate an ArrayList with 23 Integers and determine whether the list is sorted or not.
-   
-    public ArrayList populate() {//populates foo with 23 random integers
-	
-	for (int i=0; i<23; i++) {
-	    foo.add((int)(Math.random()*100));//adds to end random integer
-	}
-	sort2();
-	return foo;
+
+public class OrderedArrayList
+{
+  // instance of class ArrayList, holding objects of type Comparable 
+  // (ie, instances of a class that implements interface Comparable)
+  private ArrayList<Comparable> _data;
+
+
+  // default constructor initializes instance variable _data
+  public OrderedArrayList()
+  {
+    _data = new ArrayList<Comparable>();    
+  }
+
+
+  public String toString()
+  {
+    return _data.toString(); 
+  }
+
+
+  public Comparable remove( int index )
+  {	
+    return _data.remove(index); 
+  }
+
+
+  public int size()
+  { 
+    return _data.size();
+  }
+
+    
+  public Comparable get( int index )
+  { 
+    return _data.get(index); 
+  }
+
+
+  /***
+   * add takes as input any comparable object 
+   * (i.e., any object of a class implementing interface Comparable)
+   * inserts newVal at the appropriate index
+   * maintains ascending order of elements
+   * uses a linear search to find appropriate index
+   ***/
+  public void add( Comparable newVal )
+  { 
+    for( int p = 0; p < _data.size(); p++ ) {
+	    if ( newVal.compareTo( _data.get(p) ) < 0 ) { 
+        //newVal < oal[p]
+        _data.add( p, newVal );
+        return; //Q:why not break?
+	    }
     }
-    //wrapper method for add in ArrayList(modifies it so that it adds at correct position)
-    public void add(int x) {
-	boolean complete=false;
-	
-	for(int i=0; i<foo.size(); i++) {//go through list from 0th to last element
-	    if ((int)foo.get(i)>x) {//when the element in foo is finally larger than x
-		foo.add(i,x);//add x here, it'll be in the right position
-	        i+=foo.size();//end the method
-		complete=true;//the program is complete
+    _data.add( newVal ); //newVal > every item in oal, so add to end 
+  }
+    public void addBin(Comparable newVal)
+    {
+	int size=_data.size();
+	int guess=0;
+	while(true) {
+	    if(  newVal.compareTo(_data.get((int)(size/2)))<0) {
+		size=size/2/2;
+		guess+=1;
+	    }
+	    else if( newVal.compareTo(_data.get((int)(size/2)))>0) {
+		size=size/2/2+size/2;
+		guess+=1
+	    }
+
+	    else {
+		_data.add(size, newVal)
+		break; 
 	    }
 	}
-	if (!complete) {//if the number is bigger than everything in list
-	    foo.add(x);//append to end
-	}
-	
-        
     }
-    /*
-MY ALGO:-List sorted in ascending order
-1. go through the list
-2. everytime the number in position x is greater than the number in position x+1(not in ascending order), swap the two numbers around
-3. go through the list again and again until this instance of AlTester is sorted
-     */
-   
-    public void sort2() {
-	while(!(this.sorted())) {
-	for(int i=0; i<foo.size()-1; i++) {
-	    if((int)foo.get(i).compareTo((int)foo.get(i+1))==1) {
-		int x=(int)foo.get(i);
-		    foo.set(i,(int)foo.get(i+1));
-		    foo.set(i+1,x);
-	    }
-	}
+
+
+  // main method solely for testing purposes
+  public static void main( String[] args )
+  {
+    OrderedArrayList Franz = new OrderedArrayList();
+
+    // testing linear search
+    for( int i = 0; i < 15; i++ )
+      Franz.add( (int)( 50 * Math.random() ) );
+    System.out.println( Franz );
+
+    //check for sorted-ness
+    //if msg does not appear, list was sorted
+    for( int i=0; i<Franz.size()-1; i++ ) {
+      System.out.println("at i: " + Franz.get(i) );
+      if ( Franz.get(i).compareTo(Franz.get(i+1)) > 0 ) {
+        System.out.println( " *** NOT sorted *** " );
+        break;
+      }
     }
-    }
-    //sorted()-return true if the list is sorted.
-    public boolean sorted() {
-	int p=(int)foo.get(0);
-	for(int i=0; i<foo.size(); i++) {//go through entire list
-	    if (p>(int)foo.get(i)) {//if element before is greater than current element
-		
-		return false;//the list isnt sorted
-	    }
-	    p=(int)foo.get(i);//otherwise set this element as p as we will move on to the element to the right of p
-	}
-	return true;//if we get through the entire list without a hitch , then the list is sorted
-    }
-    //main method
-    public static void main(String[] args) {
-	OrderedArrayList b=new OrderedArrayList();
-	System.out.println(b.populate());//should be populated in ascending order
-	System.out.println(b.sorted());//true
-	//b.sort();
-	//b.sort2();
-	b.add(6);
-	b.add(12312371);
-	b.add(-2);
-	b.add(56);
-	System.out.println(b.foo);//should be sorted
-	  System.out.println(b.sorted());//true
-    }
-}
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  }//end main()
+
+}//end class OrderedArrayList
