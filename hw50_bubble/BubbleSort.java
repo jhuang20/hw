@@ -1,3 +1,7 @@
+//james huang
+//apcs pd01
+//2017-12-10
+//hw50--dat bubbly tho
 /******************************
  * class BubbleSort -- implements bubblesort algorithm (vanilla)
  ******************************/
@@ -39,7 +43,17 @@ public class BubbleSort {
   // postcondition: data's elements sorted in ascending order
   public static void bubbleSortV( ArrayList<Comparable> data )
   {
-    /* YOUR IMPLEMENTATION HERE */
+      int sort_mult=data.size();//tells us how many times we need to go through to sort the array
+      for(int p=0; sort_mult>0; sort_mult--) {//we go through the list size(0-1 times(thats what the algo tells us to do)
+	  for(int i=data.size()-1;i>0;i--) {//goes from last element to first element, 
+	      if (data.get(i).compareTo(data.get(i-1))<0) {//if the element is larger
+		  Comparable a=data.get(i-1);
+		  data.set(i,a);
+		  data.set(i-1, i);//swap positions
+	      }
+	  }
+	  
+      }
   }
 
 
@@ -48,14 +62,23 @@ public class BubbleSort {
   //                Returns sorted copy of input ArrayList.
   public static ArrayList<Comparable> bubbleSort( ArrayList<Comparable> input )
   {
-    /* YOUR IMPLEMENTATION HERE */
+      ArrayList<Comparable> data=new ArrayList<Comparable>();//makes a totally new list;
+      for (Comparable i:input) {//goes through each element of the input ArrayList
+	  data.add(i);
+      }
+      //fellow thinkers on the QAF solved this issue :) Thank you fellow thinkers :)
+      //the problem was that I was originally creating an ALIAS of the list, not a totally different copy
+      bubbleSortV(data);
+      //System.out.println(data);
+      
+      return data;
   }
 
 
   public static void main( String [] args )
   {
 
-    /*===============for VOID methods=============
+    
       ArrayList glen = new ArrayList<Integer>();
       glen.add(7);
       glen.add(1);
@@ -70,29 +93,29 @@ public class BubbleSort {
       System.out.println( "ArrayList coco before sorting:\n" + coco );
       bubbleSortV(coco);
       System.out.println( "ArrayList coco after sorting:\n" + coco );
-      ============================================*/
+      //============================================*/
 
-    /*==========for AL-returning methods==========
-    	ArrayList glen = new ArrayList<Integer>();
-      glen.add(7);
-      glen.add(1);
-      glen.add(5);
-      glen.add(12);
-      glen.add(3);
-      System.out.println( "ArrayList glen before sorting:\n" + glen );
-      ArrayList glenSorted = bubbleSort( glen );
+      //==========for AL-returning methods==========
+    	ArrayList alen = new ArrayList<Integer>();
+      alen.add(7);
+      alen.add(1);
+      alen.add(5);
+      alen.add(12);
+      alen.add(3);
+      System.out.println( "ArrayList glen before sorting:\n" + alen );
+      ArrayList alenSorted = bubbleSort( alen );
       System.out.println( "sorted version of ArrayList glen:\n" 
-      + glenSorted );
-      System.out.println( "ArrayList glen after sorting:\n" + glen );
+      + alenSorted );
+      System.out.println( "ArrayList glen after sorting:\n" + alen );
 
-      ArrayList coco = populate( 10, 1, 1000 );
-      System.out.println( "ArrayList coco before sorting:\n" + coco );
-      ArrayList cocoSorted = bubbleSort( coco );
+      ArrayList boco = populate( 10, 1, 1000 );
+      System.out.println( "ArrayList coco before sorting:\n" + boco );
+      ArrayList bocoSorted = bubbleSort( boco );
       System.out.println( "sorted version of ArrayList coco:\n" 
-      + cocoSorted );
-      System.out.println( "ArrayList coco after sorting:\n" + coco );
-      System.out.println( coco );
-      ============================================*/
+      + bocoSorted );
+      System.out.println( "ArrayList coco after sorting:\n" + boco );
+      
+      //============================================*/
 
   }//end main
 
