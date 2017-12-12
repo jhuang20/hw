@@ -1,3 +1,7 @@
+//james huang
+//hw51-Insertion Sort
+//2017-12-12
+//apcs pd01
 /***************************************
  *  class InsertionSort -- implements InsertionSort algorithm
  ***************************************/
@@ -38,7 +42,18 @@ public class InsertionSort
   // postcondition: data's elements sorted in ascending order
   public static void insertionSortV( ArrayList<Comparable> data )
   {
-    /* YOUR IMPLEMENTATION HERE */
+      for(int p=0; p<data.size(); p++) {//pass counter
+	  for(int i=p;i>0;i--) {//the algorithm starts from the end closest to the unsorted section and organizes the list from that point.It repeats until it traverses the part of the list that it is supposed to sort
+	      if(data.get(i).compareTo(data.get(i-1))<0) {//if the number is not in order
+		  data.set(i-1,data.set(i,data.get(i-1)));//swap places
+		 
+	      }
+	      /*System.out.println(p);
+	      System.out.println(i);
+	      System.out.println(data);*///diag stuff
+	  }
+	  }
+      
   }//end insertionSortV
 
 
@@ -48,8 +63,13 @@ public class InsertionSort
   public static ArrayList<Comparable>
     insertionSort( ArrayList<Comparable> input )
   {
-    /* YOUR IMPLEMENTATION HERE */
-  }//end insertionSort
+      ArrayList<Comparable> ret=new ArrayList<Comparable>();
+      for (Comparable c: input) {
+	  ret.add(c);
+      }
+      insertionSortV(ret);
+      return ret;
+}//end insertionSort
 
 
   public static void main( String [] args )
@@ -70,9 +90,9 @@ public class InsertionSort
       System.out.println( "\nArrayList coco before sorting:\n" + coco );
       insertionSortV(coco);
       System.out.println( "\nArrayList coco after sorting:\n" + coco );
-      ============================================*/
+      //============================================*/
 
-    /*==========for AL-returning methods==========
+    //*==========for AL-returning methods==========
       System.out.println( "*** Testing non-void version... *** " );
     	ArrayList glen = new ArrayList<Integer>();
       glen.add(7);
@@ -93,7 +113,7 @@ public class InsertionSort
       + cocoSorted );
       System.out.println( "\nArrayList coco after sorting:\n" + coco );
       System.out.println( coco );
-      ============================================*/
+      //============================================*/
 
   }//end main
 
