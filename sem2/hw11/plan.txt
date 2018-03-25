@@ -1,0 +1,16 @@
+//james huang
+//hw11
+//apcspd01
+//2018-02-28
+THE PLAN:
+Some observations;
+-	There is a 6X6 grid of possible moves for a knight; 6X6 is the minimum size for the knights tour to work(this is based off a lot of experimentation).
+
+1.	Begin in middle of board.
+2.	Find possible position for knight in 6X6 radius
+3.	IF There are no possible positions, then move back to previous position, and try to find another position.
+a.	If there are no moves available, then keep on backtracking until there is another “path of possibility”
+4.	ELSE  move it into an available position.
+Continue until:
+a.	There are squares that are unreachable
+b.	All squares have been visited

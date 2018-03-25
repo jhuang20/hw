@@ -1,0 +1,53 @@
+James Huang
+apcs pd 01
+hw 09 yaaaas queens
+2018-02-26
+
+2X2:
+FINAL CONCLUSION: not possible
+REASONING: The queen will always be adjacent to, or diagonal to the other queen.
+3X3:
+FINAL CONCLUSION: not possible
+REASONING: One queen can be protected from attack, but the other two queens will be diagnal or adjacent to each other.
+4X4:
+FINAL CONCLUSION: possible, 1 combination.
+ 1 2 3 4
+1  X
+2      X
+3X
+4    X 
+EXPLANATION: The only movement a queen can't do is an L shaped movement. In this situation, we can distance all the pieces 
+such that they are spaced in knights moves, in segments of 2.
+(note that this is symmetrical!)
+5X5:
+FINAL CONCLUSION: possible, 2 combinations
+  1 2 3 4 5    1 2 3 4 5 
+1   X        1 X
+2       X    2       X
+3 X          3   X
+4     X      4         X
+5         X  5     X
+ANALYSIS: THe second combination is very similar, its a reflection of #1 across line y=x.
+6X6:
+FINAL CONCLUSION: possible, 1 combination
+  1 2 3 4 5 6
+1     X
+2           X        
+3   X
+4         X
+5 X
+6       X
+ANALYSIS: using the same methodology as 4X4, i found this!
+7x7
+FINAL CONCLUSION: possible, 2 combo
+  1 2 3 4 5 6 7
+1             X
+2     X
+3           X
+4   X
+5         X
+6 X
+7       X
+This looks like this follows the same pattern as 5X5, and thus i can extrapolate that there are 2 combos. 
+8X8:
+FINAL CONCLUSION: I could not find one for this, and thus must conclude this is impossible.
