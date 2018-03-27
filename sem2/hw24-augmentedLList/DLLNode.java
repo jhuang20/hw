@@ -1,18 +1,18 @@
 /*****************************************************
  * class DLLNode
  * Implements a node, for use in lists and other container classes.
- * Stores its data as a String
+ * Stores its data as a E
  *****************************************************/
 
-public class DLLNode
+public class DLLNode<E>
 {
     //instance vars
-    private String _cargo;    //cargo may only be of type String
+    private E _cargo;    //cargo may only be of type E
     private DLLNode _nextNode; //pointer to next DLLNode
     private DLLNode _prevNode;
 
     // constructor -- initializes instance vars
-    public DLLNode( String value, DLLNode next, DLLNode prev) {
+    public DLLNode( E value, DLLNode next, DLLNode prev) {
 	_cargo = value;
 	_nextNode = next;
   _prevNode = prev;
@@ -20,7 +20,7 @@ public class DLLNode
 
 
     //--------------v  ACCESSORS  v--------------
-    public String getCargo() { return _cargo; }
+    public E getCargo() { return _cargo; }
 
     public DLLNode getNext() { return _nextNode; }
     public DLLNode getPrev() { return _prevNode; }
@@ -28,8 +28,8 @@ public class DLLNode
 
 
     //--------------v  MUTATORS  v--------------
-    public String setCargo( String newCargo ) {
-	String foo = getCargo();
+    public E setCargo( E newCargo ) {
+	E foo = getCargo();
 	_cargo = newCargo;
 	return foo;
     }
@@ -46,7 +46,7 @@ public DLLNode setPrev (DLLNode newPrev) {
     //--------------^  MUTATORS  ^--------------
 
 
-    // override inherited toString
+    // override inherited toE
     public String toString() { return _cargo.toString(); }
 
 

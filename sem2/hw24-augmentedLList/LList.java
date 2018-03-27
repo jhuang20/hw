@@ -4,11 +4,11 @@
 //2018-03-255
 /*****************************************************
  * class LList
- * Implements a linked list of DLLNodes, each containing String data
+ * Implements a linked list of DLLNodes, each containing E data
  * new in v2: add-at-index, remove
  *****************************************************/
 
-public class LList implements List //your List interface must be in same dir
+public class LList<E> implements List<E> //your List interface must be in same dir
 {
 
   //instance vars
@@ -27,7 +27,7 @@ public class LList implements List //your List interface must be in same dir
 
   //--------------v  List interface methods  v--------------
   //this method can be optimized!(by putting it in line with the specifications specified in List interface)
-  public boolean add( String newVal )
+  public boolean add( E newVal )
   {
 
     DLLNode tmp = new DLLNode( newVal, null, null );
@@ -45,12 +45,12 @@ public class LList implements List //your List interface must be in same dir
   }
 
 
-  public String get( int index )
+  public E get( int index )
   {
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
 
-    String retVal;
+    E retVal;
     DLLNode tmp = _head; //create alias to head
 
     //walk to desired node
@@ -58,12 +58,12 @@ public class LList implements List //your List interface must be in same dir
 	    tmp = tmp.getNext();
 
     //check target node's cargo hold
-    retVal = tmp.getCargo();
+    retVal = (E)tmp.getCargo();
     return retVal;
   }
 
 
-  public String set( int index, String newVal )
+  public E set( int index, E newVal )
   {
 
     if ( index < 0 || index >= size() )
@@ -76,7 +76,7 @@ public class LList implements List //your List interface must be in same dir
 	    tmp = tmp.getNext();
 
     //store target node's cargo
-    String oldVal = tmp.getCargo();
+    E oldVal =(E) tmp.getCargo();
 
     //modify target node's cargo
     tmp.setCargo( newVal );
@@ -94,7 +94,7 @@ public class LList implements List //your List interface must be in same dir
   basically, i utilized the cross-linking of DLLNode to link the previous, new added element, and what comes after by splicing and re-linking the list
 
   */
-  public void add( int index, String newVal ) {
+  public void add( int index, E newVal ) {
 
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
@@ -123,18 +123,18 @@ public class LList implements List //your List interface must be in same dir
 
 
   //remove node at pos index, return its cargo
-  public String remove( int index ) {
+  public E remove( int index ) {
 
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
 
-    String retVal;
+    E retVal;
     DLLNode tmp = _head; //create alias to head
 
     //if index==0, remove head node
     if ( index == 0 ) {
 	    //check target node's cargo hold
-	    retVal = _head.getCargo();
+	    retVal =(E) _head.getCargo();
 
 	    //remove target node
 	    _head = _head.getNext();
@@ -145,7 +145,7 @@ public class LList implements List //your List interface must be in same dir
         tmp = tmp.getNext();
 
 	    //check target node's cargo hold
-	    retVal = tmp.getNext().getCargo();
+	    retVal = (E)tmp.getNext().getCargo();
 
 	    //remove target node
 	    tmp.setNext( tmp.getNext().getNext() );
@@ -160,7 +160,7 @@ public class LList implements List //your List interface must be in same dir
   //--------------^  List interface methods  ^--------------
 
 
-  // override inherited toString
+  // override inherited toE
   public String toString()
   {
     String retStr = "HEAD->";

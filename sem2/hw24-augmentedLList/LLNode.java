@@ -4,7 +4,7 @@
  * Stores its data as a String
  *****************************************************/
 
-public class DLLNode
+public class DLLNode<E>
 {
     //instance vars
     private String _cargo;    //cargo may only be of type String
